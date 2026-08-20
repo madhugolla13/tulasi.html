@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Birthday Tulasii 💗</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #050008;
+            color: white;
+            font-family: "Segoe UI", Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .page {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* MUSIC BUTTON */
+
+        #musicButton {
+            position: fixed;
+            top: 18px;
+            right: 18px;
+            z-index: 100;
+
+            padding: 12px 20px;
+
+            border: none;
+            border-radius: 50px;
+
+            background: rgba(255, 77, 150, 0.9);
+            color: white;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow: 0 0 20px #ff4f9a;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 30px 20px;
+        }
+
+        .hero-small {
+            font-size: 16px;
+            letter-spacing: 5px;
+            color: #ffd1e6;
+        }
+
+        .heart-top {
+            font-size: 65px;
+            margin: 15px;
+
+            animation: heartbeat 1.2s infinite;
+        }
+
+        .hero h1 {
+            margin: 0;
+
+            font-size: clamp(60px, 13vw, 120px);
+
+            background: linear-gradient(
+                90deg,
+                #ff4f9a,
+                #ffffff,
+                #ff9dcc,
+                #ff4f9a
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            filter: drop-shadow(0 0 15px #ff4f9a);
+
+            animation: glow 2s infinite alternate;
+        }
+
+        .sister-name {
+            font-size: clamp(25px, 6vw, 45px);
+            color: #ffb4d8;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #ffe5f2;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .scroll {
+            margin-top: 40px;
+            color: #ffacd1;
+            animation: bounce 1.5s infinite;
+        }
+
+        /* COMMON SECTION */
+
+        section {
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 70px 20px;
+        }
+
+        .card {
+            width: 92%;
+            max-width: 850px;
+
+            padding: 40px 30px;
+
+            background: rgba(255, 255, 255, 0.07);
+
+            border: 1px solid rgba(255, 255, 255, 0.16);
+
+            border-radius: 30px;
+
+            backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 0 40px rgba(255, 50, 140, 0.2);
+
+            text-align: center;
+        }
+
+        .card h2 {
+            color: #ff9dcc;
+            font-size: clamp(30px, 6vw, 45px);
+            margin-top: 0;
+        }
+
+        /* PHOTO */
+
+        .photo-frame {
+            width: min(380px, 90vw);
+            height: min(500px, 120vw);
+
+            margin: 30px auto;
+
+            padding: 8px;
+
+            border-radius: 28px;
+
+            background: linear-gradient(
+                135deg,
+                #ff4f9a,
+                #ffe1ee,
+                #ff4f9a
+            );
+
+            box-shadow:
+                0 0 35px rgba(255, 70, 150, 0.7);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 22px;
+
+            display: block;
+        }
+
+        .photo-text {
+            font-size: 19px;
+            color: #ffe5f1;
+            line-height: 1.8;
+        }
+
+        /* QUOTE */
+
+        .quote {
+            font-size: clamp(23px, 5vw, 36px);
+            line-height: 1.7;
+
+            color: #fff;
+
+            font-style: italic;
+
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .quote span {
+            color: #ff91c4;
+            font-weight: bold;
+        }
+
+        /* MESSAGE */
+
+        .message {
+            max-width: 720px;
+
+            margin: auto;
+
+            text-align: left;
+
+            font-size: 19px;
+
+            line-height: 2;
+
+            color: #ffeaf4;
+        }
+
+        .message strong {
+            color: #ff91c4;
+        }
+
+        /* BUTTON */
+
+        .surprise-button {
+            margin-top: 35px;
+
+            padding: 16px 32px;
+
+            border: none;
+            border-radius: 50px;
+
+            background: linear-gradient(
+                135deg,
+                #ff3f91,
+                #ff9ccc
+            );
+
+            color: white;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 25px rgba(255, 60, 150, 0.7);
+
+            transition: 0.3s;
+        }
+
+        .surprise-button:hover {
+            transform: scale(1.08);
+        }
+
+        /* FINAL */
+
+        #finalSection {
+            display: none;
+        }
+
+        .final-card {
+            text-align: center;
+        }
+
+        .cake {
+            font-size: 90px;
+
+            animation: cakeFloat 2s infinite;
+        }
+
+        .final-title {
+            font-size: clamp(45px, 10vw, 90px);
+
+            background: linear-gradient(
+                90deg,
+                #ff4f9a,
+                #ffffff,
+                #ff9dcc
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            animation: glow 2s infinite alternate;
+        }
+
+        .final-message {
+            font-size: 21px;
+            line-height: 1.9;
+            color: #ffe5f1;
+        }
+
+        .love-text {
+            font-size: 30px;
+            color: #ff91c4;
+            font-weight: bold;
+        }
+
+        /* ANIMATIONS */
+
+        @keyframes heartbeat {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.25);
+            }
+        }
+
+        @keyframes glow {
+
+            from {
+                filter: drop-shadow(0 0 5px #ff4f9a);
+            }
+
+            to {
+                filter: drop-shadow(0 0 30px #ff4f9a);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(12px);
+            }
+        }
+
+        @keyframes cakeFloat {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .card {
+                padding: 30px 18px;
+            }
+
+            .message {
+                font-size: 17px;
+                line-height: 1.8;
+            }
+
+            .photo-frame {
+                height: 430px;
+            }
+
+            .final-message {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- BACKGROUND ANIMATION -->
+
+    <canvas id="canvas"></canvas>
+
+
+    <!-- MUSIC -->
+
+    <audio id="birthdaySong" loop>
+        <source src="memories.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <button id="musicButton" onclick="toggleMusic()">
+        🎵 Play Memories
+    </button>
+
+
+    <div class="page">
+
+        <!-- =================================
+             FIRST SCREEN
+        ================================== -->
+
+        <div class="hero">
+
+            <div class="hero-small">
+                A LITTLE SURPRISE FOR
+            </div>
+
+            <div class="heart-top">
+                💗
+            </div>
+
+            <h1>
+                Tulasii
+            </h1>
+
+            <div class="sister-name">
+                Myyy Pretty Sissyyyy 🥹💕
+            </div>
+
+            <p>
+                Some people enter our life and become
+                memories...
+
+                <br>
+
+                But some people become a part of our heart
+                forever. ❤️
+            </p>
+
+            <div class="scroll">
+                ↓ Scroll slowly... ↓
+                <br>
+                I made this only for you 💕
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             PHOTO
+        ================================== -->
+
+        <section>
+
+            <div class="card">
+
+                <h2>
+                    📸 My Beautiful Sissyyyy
+                </h2>
+
+                <div class="photo-frame">
+
+                    <img
+                        src="tulasii.jpg"
+                        alt="Tulasii"
+                    >
+
+                </div>
+
+                <div class="photo-text">
+
+                    This smile...
+
+                    <br>
+
+                    This beautiful face...
+
+                    <br>
+
+                    And this beautiful soul...
+
+                    <br><br>
+
+                    <strong>
+                        I hope life always gives you
+                        a thousand reasons to smile. 💗
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             SONG + QUOTE
+        ================================== -->
+
+        <section>
+
+            <div class="card">
+
+                <h2>
+                    🎵 A Song & A Memory
+                </h2>
+
+                <div class="quote">
+
+                    "Sometimes people become memories,
+                    but the best people become memories
+                    that we never want to lose."
+
+                    <br><br>
+
+                    <span>
+                        And you, Tulasii,
+                        will always be one of my
+                        most beautiful memories. ❤️
+                    </span>
+
+                </div>
+
+                <br>
+
+                <p style="color:#ffc5df;">
+                    🎵 Memories — Maroon 5
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             EMOTIONAL MESSAGE
+        ================================== -->
+
+        <section>
+
+            <div class="card">
+
+                <h2>
+                    💌 From My Heart
+                </h2>
+
+                <div class="message">
+
+                    Dear Tulasii,
+
+                    <br><br>
+
+                    I don't always say what I feel.
+
+                    Sometimes we fight.
+                    Sometimes we irritate each other.
+                    Sometimes we don't even agree on
+                    the smallest things. 😂
+
+                    <br><br>
+
+                    But behind every fight,
+                    every joke,
+                    every silly moment...
+
+                    <br><br>
+
+                    <strong>
+                        there is a bond that I never want
+                        to lose. ❤️
+                    </strong>
+
+                    <br><br>
+
+                    You are not just my sister.
+
+                    <br>
+
+                    You are someone who has been a part
+                    of my life, my memories,
+                    my happiness and my growing-up years.
+
+                    <br><br>
+
+                    There are many things I may never
+                    say directly...
+
+                    <br>
+
+                    But today I want you to know this:
+
+                    <br><br>
+
+                    <strong>
+                        I am genuinely lucky to have you
+                        as my sister. 🫂
+                    </strong>
+
+                    <br><br>
+
+                    No matter where life takes us,
+                    no matter how much we grow,
+                    and no matter how many things change...
+
+                    <br><br>
+
+                    <strong>
+                        You will always have a special
+                        place in my heart.
+                    </strong>
+
+                    <br><br>
+
+                    Whenever you feel low,
+                    remember that there is always
+                    someone wishing for your happiness.
+
+                    <br><br>
+
+                    I hope you achieve everything
+                    you dream about.
+
+                    <br>
+
+                    I hope you smile more.
+
+                    <br>
+
+                    I hope you love yourself more.
+
+                    <br>
+
+                    And I hope every coming year
+                    becomes more beautiful than
+                    the previous one.
+
+                    <br><br>
+
+                    Because you deserve all the happiness
+                    in this world, my pretty sissyyyy. 💗
+
+                </div>
+
+
+                <button
+                    class="surprise-button"
+                    onclick="showFinal()">
+
+                    🎁 Open Your Final Surprise 🎁
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             FINAL BIRTHDAY
+        ================================== -->
+
+        <section id="finalSection">
+
+            <div class="card final-card">
+
+                <div class="cake">
+                    🎂
+                </div>
+
+                <h1 class="final-title">
+                    HAPPY BIRTHDAY
+                    <br>
+                    TULASII 💗
+                </h1>
+
+                <div class="final-message">
+
+                    Today is your day. ✨
+
+                    <br><br>
+
+                    Forget all the worries.
+                    Forget all the stress.
+
+                    <br>
+
+                    Just smile...
+
+                    <br>
+
+                    because today the world celebrates
+                    the beautiful person you are. 🥹💕
+
+                    <br><br>
+
+                    May your life be filled with
+
+                    <br>
+
+                    ✨ Happiness
+
+                    <br>
+
+                    ✨ Love
+
+                    <br>
+
+                    ✨ Success
+
+                    <br>
+
+                    ✨ Beautiful memories
+
+                    <br>
+
+                    ✨ And endless smiles
+
+                    <br><br>
+
+                    <span class="love-text">
+                        HAPPY BIRTHDAY
+                        MY PRETTY SISSYYYY! 🫂💗
+                    </span>
+
+                    <br><br>
+
+                    No matter how old you become...
+
+                    <br>
+
+                    You'll always be my
+                    pretty sissyyyy. 🥹❤️
+
+                    <br><br>
+
+                    <span class="love-text">
+                        LOVE YOU FOREVER. 💕
+                    </span>
+
+                    <br><br>
+
+                    🎂🎉🎈💗✨🥹🫂
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- =================================
+         JAVASCRIPT
+    ================================== -->
+
+    <script>
+
+        /* CANVAS */
+
+        const canvas =
+            document.getElementById("canvas");
+
+        const ctx =
+            canvas.getContext("2d");
+
+        let W =
+            window.innerWidth;
+
+        let H =
+            window.innerHeight;
+
+        canvas.width = W;
+        canvas.height = H;
+
+
+        /* FLOATING HEARTS */
+
+        const hearts = [];
+
+        for (let i = 0; i < 80; i++) {
+
+            hearts.push({
+
+                x: Math.random() * W,
+
+                y: Math.random() * H,
+
+                size: Math.random() * 18 + 8,
+
+                speed: Math.random() * 0.8 + 0.2,
+
+                opacity: Math.random() * 0.7 + 0.2
+
+            });
+
+        }
+
+
+        function drawHearts() {
+
+            hearts.forEach(heart => {
+
+                heart.y -= heart.speed;
+
+                if (heart.y < -30) {
+
+                    heart.y = H + 30;
+
+                    heart.x =
+                        Math.random() * W;
+
+                }
+
+                ctx.globalAlpha =
+                    heart.opacity;
+
+                ctx.font =
+                    heart.size + "px Arial";
+
+                ctx.fillText(
+                    "💗",
+                    heart.x,
+                    heart.y
+                );
+
+            });
+
+            ctx.globalAlpha = 1;
+        }
+
+
+        /* STARS */
+
+        const stars = [];
+
+        for (let i = 0; i < 120; i++) {
+
+            stars.push({
+
+                x: Math.random() * W,
+
+                y: Math.random() * H,
+
+                size: Math.random() * 2 + 1,
+
+                opacity: Math.random()
+
+            });
+
+        }
+
+
+        function drawStars() {
+
+            stars.forEach(star => {
+
+                ctx.beginPath();
+
+                ctx.arc(
+                    star.x,
+                    star.y,
+                    star.size,
+                    0,
+                    Math.PI * 2
+                );
+
+                ctx.fillStyle =
+                    "rgba(255,255,255," +
+                    star.opacity +
+                    ")";
+
+                ctx.fill();
+
+            });
+
+        }
+
+
+        /* CONFETTI */
+
+        let confetti = [];
+
+
+        function createConfetti() {
+
+            for (let i = 0; i < 250; i++) {
+
+                confetti.push({
+
+                    x: W / 2,
+
+                    y: H / 2,
+
+                    size:
+                        Math.random() * 8 + 3,
+
+                    speedX:
+                        (Math.random() - 0.5) * 15,
+
+                    speedY:
+                        (Math.random() - 0.5) * 15,
+
+                    gravity: 0.2,
+
+                    color: [
+                        "#ff4f9a",
+                        "#ffd166",
+                        "#ffffff",
+                        "#ff8fab",
+                        "#cdb4db"
+                    ][
+                        Math.floor(
+                            Math.random() * 5
+                        )
+                    ]
+
+                });
+
+            }
+
+        }
+
+
+        function drawConfetti() {
+
+            confetti.forEach(piece => {
+
+                piece.x +=
+                    piece.speedX;
+
+                piece.y +=
+                    piece.speedY;
+
+                piece.speedY +=
+                    piece.gravity;
+
+                ctx.fillStyle =
+                    piece.color;
+
+                ctx.fillRect(
+                    piece.x,
+                    piece.y,
+                    piece.size,
+                    piece.size
+                );
+
+            });
+
+        }
+
+
+        /* ANIMATION */
+
+        function animate() {
+
+            ctx.clearRect(
+                0,
+                0,
+                W,
+                H
+            );
+
+            drawStars();
+
+            drawHearts();
+
+            drawConfetti();
+
+            requestAnimationFrame(
+                animate
+            );
+
+        }
+
+        animate();
+
+
+        /* MUSIC */
+
+        const song =
+            document.getElementById(
+                "birthdaySong"
+            );
+
+
+        function toggleMusic() {
+
+            if (song.paused) {
+
+                song.play();
+
+                document.getElementById(
+                    "musicButton"
+                ).innerHTML =
+                    "🔊 Memories Playing";
+
+            } else {
+
+                song.pause();
+
+                document.getElementById(
+                    "musicButton"
+                ).innerHTML =
+                    "🎵 Play Memories";
+
+            }
+
+        }
+
+
+        /* FINAL SURPRISE */
+
+        function showFinal() {
+
+            const finalSection =
+                document.getElementById(
+                    "finalSection"
+                );
+
+            finalSection.style.display =
+                "flex";
+
+            createConfetti();
+
+            setTimeout(
+                createConfetti,
+                500
+            );
+
+            setTimeout(
+                createConfetti,
+                1000
+            );
+
+            setTimeout(
+                createConfetti,
+                1500
+            );
+
+            window.scrollTo({
+
+                top:
+                    finalSection.offsetTop,
+
+                behavior:
+                    "smooth"
+
+            });
+
+        }
+
+
+        /* RESIZE */
+
+        window.addEventListener(
+            "resize",
+            function () {
+
+                W =
+                    window.innerWidth;
+
+                H =
+                    window.innerHeight;
+
+                canvas.width = W;
+
+                canvas.height = H;
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
